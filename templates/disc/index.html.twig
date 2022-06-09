@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{title}} | {{{{ parent()}}{% endblock %}
+
+{% block body %}
+    <h1>List music {{title}}</h1>
+    <ul>
+    {% for item in data %}
+        <li>{{item.name}} - {{item.artist}}</li>
+    {% endfor %}
+    </ul>    
+{% endblock %}

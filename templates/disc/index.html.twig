@@ -35,14 +35,12 @@
         <div class="col-12 col-md-8 ps-5">
             <h2 class="mb-4">10 songs (30 minutes of 60 still available)</h2>
             
-            {#
-            <div stimulus_controller('song_controls')></div>
-            stimulus_action('song_controls', 'play')
-            #}
             {% for item in data %}
-            <div class="song-list">
+            
+            <div class="song-list" {{stimulus_controller('song', { infoUrl: path('app_ajax_getsong', { id: loop.index}) } )}}>
+                
                 <div class="d-flex mb-3">
-                        <a href="#" >
+                        <a href="#" {{stimulus_action('song', 'play')}}>
                             <i class="fas fa-play me-3"></i>
                         </a>
                         <span class="song-details">{{item.name}} - {{item.artist}}</span>

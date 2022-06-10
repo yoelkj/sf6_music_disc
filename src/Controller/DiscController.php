@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DiscController extends AbstractController
 {
-    #[Route('/')]
+    #[Route('/', name: 'app_homepage')]
     public function index(): Response
     {
 
@@ -27,10 +27,12 @@ class DiscController extends AbstractController
 
     }
 
-    #[Route('/browse/{slug}')]
+    #[Route('/browse/{slug}', name: 'app_browse')]
     public function browse(string $slug = null): Response
     {
-        $title = (($slug))? 'Genre: '.ucfirst(str_replace(['-', '_'], ' ', $slug)):'All Genres';
-        return new Response($title);
+        $genere = (($slug))? 'Genere: '.ucfirst(str_replace(['-', '_'], ' ', $slug)):'All generes';
+        return $this->render('/disc/browse.html.twig', [
+            'genere' => $genere
+        ]);
     }
 }
